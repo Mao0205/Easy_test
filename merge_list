@@ -55,6 +55,8 @@ NODE *merge(NODE*a, NODE*b)
 int main(void)
 {   
     NODE *result;
+    
+    //a = 3 5 7
     NODE *a = (NODE*)malloc(sizeof(NODE));
     NODE *a1 = (NODE*)malloc(sizeof(NODE));
     NODE *a2 = (NODE*)malloc(sizeof(NODE));
@@ -65,6 +67,7 @@ int main(void)
     a2->data = 7;
     a2->next = NULL;
 
+    //b = 2 5 10
     NODE *b = (NODE*)malloc(sizeof(NODE));
     NODE *b1 = (NODE*)malloc(sizeof(NODE));
     NODE *b2 = (NODE*)malloc(sizeof(NODE));
