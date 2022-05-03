@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct Node
+{
+    int data;
+    struct Node *next;
+}NODE;
+
+
+void printList(NODE* a)
+{
+    while(a != NULL)
+    {
+        printf("%d  " , a->data);
+        a = a->next;
+    }
+    printf("\n");
+}
+
+NODE *merge(NODE*a, NODE*b)
+{
+    NODE *temp = NULL, point={-1,NULL};
+    printf("start\n");
+    temp = &point;
+
+    printf("point alreadly\n");
+    while(a!= NULL && b!= NULL)
+    {
+        printf("compare %d %d\n", a->data, b->data);
+        if((a->data) <= (b->data))
+        {
+            printf("a win\n");
+            temp->next = a;
+            a = a->next;
+        }
+        else
+        {
+            printf("b win\n");
+            temp->next = b;
+            b = b->next;
+        }
+        printf("next\n");
+        temp = temp->next;
+        printList(temp);
+    }
+    if(a == NULL)
+        temp->next = b;
+    else if(b == NULL)
+        temp->next =a;
+
+    return point.next;
+}
+
+int main(void)
+{   
+    NODE *result;
+    NODE *a = (NODE*)malloc(sizeof(NODE));
+    NODE *a1 = (NODE*)malloc(sizeof(NODE));
+    NODE *a2 = (NODE*)malloc(sizeof(NODE));
+    a->data = 3;
+    a->next = a1;
+    a1->data = 5;
+    a1->next = a2;
+    a2->data = 7;
+    a2->next = NULL;
+
+    NODE *b = (NODE*)malloc(sizeof(NODE));
+    NODE *b1 = (NODE*)malloc(sizeof(NODE));
+    NODE *b2 = (NODE*)malloc(sizeof(NODE));
+    b->data = 2;
+    b->next = b1;
+    b1->data = 5;
+    b1->next = b2;
+    b2->data = 10;
+    b2->next = NULL;
+    printf("A is : ");
+    printList(a);
+    printf("B is : ");
+    printList(b);
+
+    result = merge(a,b);
+    printList(result);
+    
+    return 0;
+
+
+}
+
