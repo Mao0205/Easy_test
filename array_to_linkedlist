@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct Node
+{
+    int data;
+    struct Node *next;
+}NODE;
+
+
+void printList(NODE* a)
+{
+    while(a != NULL)
+    {
+        printf("%d  " , a->data);
+        a = a->next;
+    }
+    printf("\n");
+}
+
+NODE* newnode(int n)
+{
+    NODE *temp = (NODE*)malloc(sizeof(NODE));
+    temp->data = n;
+    temp->next = NULL;
+    return temp;
+}
+
+int main(void)
+{   
+    int n, arr[10000];
+    int i;
+    scanf("%d", &n);
+    for(i=0;i<n;i++)
+        scanf("%d", &arr[i]);
+
+    NODE array, *temp1;
+    NODE *temp = (NODE*)malloc(sizeof(NODE));
+
+    array.data = 0;
+    array.next = NULL;
+
+    temp = &array;
+    for(i=1;i<n;i++)
+    {
+        printf("%d ", arr[i]);
+        
+        //ceate a new node
+        temp1 = newnode(arr[i]);
+        
+        //point to new node
+        temp->next = temp1;
+        temp = temp->next;
+    }
+    printf("\n");
+    printList(array.next);
+
+    
+    return 0;
+
+
+}
