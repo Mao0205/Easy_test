@@ -1,0 +1,112 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct Node
+{
+    int data;
+    struct Node *next;
+}NODE;
+
+
+void printList(NODE* a)
+{
+    while(a != NULL)
+    {
+        printf("%d  " , a->data);
+        a = a->next;
+    }
+    printf("\n");
+}
+
+NODE* newnode(int n)
+{
+    NODE *temp = (NODE*)malloc(sizeof(NODE));
+    temp->data = n;
+    temp->next = NULL;
+    return temp;
+}
+
+NODE* GetOdd(NODE* arr)
+{
+    int count=0;
+    NODE odd,even;
+    NODE *temp,*temp1, *result;
+
+    odd.next = even.next = NULL;
+    odd.data = even.data = 0;
+    temp = &odd;
+    temp1 = &even;
+    /*if(arr == NULL)
+    {
+        return NULL;
+    }
+       */ 
+    while(arr != NULL)
+    {
+        printf("Start clessified\n");
+        if(count%2 == 0)//odd
+        {
+            temp->next = arr;
+            arr = arr->next;
+            temp = temp->next;
+        }
+        else//even
+        {
+            temp1->next =arr;
+            arr = arr->next;
+            temp1 = temp1->next;
+        }
+        count++;
+    }
+    temp->next = NULL;
+    temp1->next = NULL;
+    printf("new array is : ");
+    printList(odd.next);
+    printf("\nold array is : ");
+    printList(even.next);
+    printf("\n");
+    if(even.next!=NULL)
+    {
+        printf("to the next \n");
+        result = GetOdd(even.next);
+        printList(result);
+        temp->next = result;
+    }
+
+    return odd.next;
+}
+
+int main(void)
+{
+    int n, arr[10000];
+    int i;
+    scanf("%d", &n);
+    for(i=0;i<n;i++)
+        scanf("%d", &arr[i]);
+
+    NODE array,*temp1;
+    NODE *temp = (NODE*)malloc(sizeof(NODE));
+
+    array.data = 0;
+    array.next = NULL;
+
+    temp = &array;
+    for(i=0;i<n;i++)
+    {
+        printf("%d ", arr[i]);
+        temp1 = newnode(arr[i]);
+        temp->next = temp1;
+        temp = temp->next;
+    }
+    printf("\n");
+    //printList(array.next);
+
+
+    temp1 = GetOdd(array.next);
+    printf("The answer goes to : ");
+    printList(temp1);
+
+    return 0;
+
+
+}
