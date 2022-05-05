@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(void)
+{
+    int i, n, par[10000], wei[10000];
+    scanf("%d", &n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d", &par[i]);
+    }
+    for(i=0;i<n;i++)
+        scanf("%d", &wei[i]);
+
+    for(i=0;i<n;i++)
+    {
+        if(wei[i] < wei[par[i]]+wei[i])
+            wei[i] = wei[par[i]]+wei[i];
+    }
+
+    for(i=0;i<n;i++)
+        printf("%d ", wei[i]);
+
+}
