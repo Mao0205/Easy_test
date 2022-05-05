@@ -36,11 +36,7 @@ NODE* GetOdd(NODE* arr)
     odd.data = even.data = 0;
     temp = &odd;
     temp1 = &even;
-    /*if(arr == NULL)
-    {
-        return NULL;
-    }
-       */ 
+
     while(arr != NULL)
     {
         printf("Start clessified\n");
